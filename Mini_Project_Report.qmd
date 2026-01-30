@@ -5,6 +5,9 @@ format: pdf
 bibliography: references.bib
 nocite: '@*'
 ---
+
+Github repository link: [click here](https://github.com/jemappelleyesmine/Extension_Monetary_Policy_Proxy_VAR_Gertler_Karadi_2015)
+
 # 1. Research question
 
 The main research question of Gertler and Karadi (2015) relates to how exogenous monetary policy shocks affect credit conditions and real economic activity, and through which channels these effects are transmitted. In particular, the authors ask whether monetary policy operates solely through the conventional interest rate channel emphasized in standard New Keynesian models, or whether it also works through a credit channel that amplifies the effects of policy actions by altering financial conditions faced by private borrowers.
