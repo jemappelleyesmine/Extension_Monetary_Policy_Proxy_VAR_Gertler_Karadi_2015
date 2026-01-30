@@ -1,11 +1,5 @@
 % VAR_main_Authors_Figure1.m
 % =========================================================================
-% Runs the GK(2015) Figure 1 replication using the AUTHORS' original datasets:
-%   data/karadi_2015_data/VAR_data.csv
-%   data/karadi_2015_data/factor_data.csv
-%
-% This is your "baseline truth" run, to compare against your raw-only rebuild.
-% =========================================================================
 
 clearvars; close all; clc;
 

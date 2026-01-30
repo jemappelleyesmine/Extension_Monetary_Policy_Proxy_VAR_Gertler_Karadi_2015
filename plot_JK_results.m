@@ -1,13 +1,5 @@
 % =========================================================================
-% PLOT JK (2020) DECOMPOSITION RESULTS (IMPROVED VERSION)
-% Generates comparison figures for Pure MP vs CBI shocks
-% 
-% IMPROVEMENTS FROM REVIEWER FEEDBACK:
-%   1. Explicit variable indexing (no hard-coded positions)
-%   2. Clear normalization statement
-%   3. Diagnostic output (proxy statistics)
-%   4. Consistent confidence band terminology
-%   5. Improved figure layouts (JK-style comparison)
+% PLOT JK (2020) DECOMPOSITION RESULTS
 % =========================================================================
 
 clear all; close all;

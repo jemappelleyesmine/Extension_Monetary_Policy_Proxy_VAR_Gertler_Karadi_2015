@@ -1,4 +1,4 @@
-% VAR_main_Replication.m - STEP 2: REPLICATION (IMPROVED)
+% VAR_main_Extension.m
 % =========================================================================
 
 clearvars; close all; clc;
@@ -127,7 +127,7 @@ for ii_monpol = 1:no_monpol_vars
     no_factors1 = numel(factors1_cell);
     no_factors2 = numel(factors2_cell);
 
-    % For replication you typically have just one smpl_max_VAR_vec row
+    % For replication we typically have just one smpl_max_VAR_vec row
     for ii_smpl_max = 1:no_smpl_max_VAR
         for ii_factors = 1:no_factors1
             for ii_spreads = 1:no_spreads
@@ -322,7 +322,7 @@ fprintf('=======================================================================
 fprintf('For Step 3 (Extension):\n');
 fprintf('  Change smpl_max_VAR_vec to [2023 12] (or latest)\n');
 fprintf('  Change smpl_max_factors_vec to [2023 12] (or latest)\n');
-fprintf('  Switch factors1_cell_GS1 to {''ED2_TC''} (or your chosen proxy)\n');
+fprintf('  Switch factors1_cell_GS1 to {''ED2_TC''} (or chosen proxy)\n');
 fprintf('  Set figure_name = ''EXTENSION''\n\n');
 
 fprintf('For Step 4 (Extension Pre-Covid):\n');

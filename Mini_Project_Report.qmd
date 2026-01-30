@@ -1,0 +1,130 @@
+---
+title: "An extension of *“Monetary Policy Surprises, Credit Costs, and Economic Activity”* by Mark Gertler and Peter Karadi (2015)"
+author: "Yesmine Hachana (Université Paris Dauphine-PSL)"
+format: pdf
+bibliography: references.bib
+nocite: '@*'
+---
+# 1. Research question
+
+The main research question of Gertler and Karadi (2015) relates to how exogenous monetary policy shocks affect credit conditions and real economic activity, and through which channels these effects are transmitted. In particular, the authors ask whether monetary policy operates solely through the conventional interest rate channel emphasized in standard New Keynesian models, or whether it also works through a credit channel that amplifies the effects of policy actions by altering financial conditions faced by private borrowers.
+
+In the conventional transmission mechanism, a surprise change in the central bank’s policy stance affects expected future short-term interest rates and, through the expectations hypothesis, government bond yields across maturities. In frictionless financial markets, changes in government bond yields translate one-for-one into private borrowing rates, meaning that monetary policy affects the economy only through movements in risk-free rates. Under this view, credit spreads and term premia should not respond systematically to a monetary policy shock. By contrast, theories with financial frictions predict that a tightening of monetary policy increases credit spreads by worsening borrowers’ balance sheets or tightening lenders’ constraints, thereby raising the external finance premium and amplifying the contractionary effects of policy on real activity.
+
+One difficulty in empirically assessing the importance of the credit channel is the identification of monetary policy shocks. Standard VAR approaches based on recursive (Cholesky) timing restrictions assume that policy rates do not respond contemporaneously to financial conditions, an assumption that is particularly problematic when financial variables such as credit spreads are included in the system. Gertler and Karadi (2015) address this issue by using high-frequency surprises in interest rate futures around FOMC announcements as external instruments to identify exogenous monetary policy shocks. This approach allows them to isolate policy-induced movements in interest rates that are orthogonal to contemporaneous macroeconomic and financial developments.
+
+The objective of this project is to replicate the findings from the paper’s simple VAR and to assess their robustness along two dimensions. First, the project examines the sensitivity of the results to the choice of sample period by extending the original dataset to include the post-2012 period and by distinguishing samples with and without the COVID-19 crisis. Indeed, the COVID period is characterized by notable monetary policy interventions and financial market disruptions. Second, the project investigates the role of identification by distinguishing between “pure” monetary policy shocks and central bank information (CBI) shocks, as well as alternative instrument choices, in order to clarify whether differences in estimated impulse responses are driven primarily by the data sample or by the nature of the identified policy shocks.
+
+# 2. Empirical strategy
+
+The empirical analysis is based on a monthly Structural Vector Autoregression (SVAR) designed to study the transmission of monetary policy shocks to credit conditions and real economic activity. The baseline specification follows Gertler and Karadi (2015) and is subsequently extended along the sample period and the identification of monetary policy shocks.
+
+## 2.1. VAR specification
+
+The core empirical model is a monthly VAR including four variables: the logarithm of industrial production, the logarithm of the consumer price index, a one-year U.S. Treasury yield used as the policy indicator, and the Gilchrist-Zakrajšek excess bond premium. Industrial production and the consumer price index capture real activity and inflation, respectively. The one-year Treasury yield summarizes the stance of monetary policy and incorporates both current policy actions and expectations about future short-term rates. The excess bond premium measures credit market tightness by isolating the component of corporate bond spreads that reflects financial frictions rather than expected default risk.
+
+All variables enter the VAR in levels, which fits the baseline “simple VAR” specification in Gertler and Karadi (2015). The VAR is estimated at a monthly frequency with twelve lags. This choice is motivated by standard information criteria in the original paper and maintained throughout the analysis. Impulse responses are computed over a horizon of forty-eight months.
+
+## 2.2. Identification of monetary policy shocks
+
+Two identification strategies are implemented and compared. The first is a recursive identification based on a Cholesky decomposition of the reduced-form covariance matrix. In this benchmark specification, the variables are ordered such that prices and real activity do not respond contemporaneously to monetary policy shocks, while financial variables may respond within the month. Under this ordering, the monetary policy shock is defined as the innovation to the policy indicator equation.
+
+The second identification strategy uses external instruments in a proxy-SVAR framework. Monetary policy shocks are identified using high-frequency surprises around Federal Open Market Committee announcements, aggregated to the monthly frequency. These surprises are assumed to be correlated with exogenous monetary policy shocks but orthogonal to other structural disturbances affecting the VAR. The proxy-SVAR is implemented following the methodology as in Gertler and Karadi (2015). Identification relies on the covariance between the policy equation residual and the external instrument over the subsample for which the instrument is observed.
+
+## 2.3. Instruments
+
+The baseline replication of Gertler and Karadi (2015) uses the FF4 futures surprise as the external instrument. This instrument is available only over the period from January 1991 to June 2012. To extend the analysis beyond 2012, the Eurodollar ED2 futures surprise is employed as a substitute instrument, as it is available over a longer time span.
+
+High-frequency surprises are aggregated to the monthly frequency using sums of announcement-level surprises. Months without policy meetings are assigned zero values within the instrument availability window, while observations outside the availability window are treated as missing.
+
+## 2.4. Decomposition of monetary policy shocks
+
+To refine the identification of monetary policy shocks, the analysis further distinguishes between “pure” monetary policy shocks and central bank information shocks. This decomposition follows the work of Jarociński and Karadi (2020) by exploiting the joint behavior of interest rate surprises and equity price surprises around policy announcements. Monetary policy surprises that are associated with rising interest rates and falling equity prices are classified as pure monetary policy shocks, while surprises associated with rising interest rates and rising equity prices are classified as information shocks.
+
+## 2.5. Estimation
+
+The reduced-form VAR is estimated by ordinary least squares. Impulse response functions are computed using standard VAR recursion from the identified impact vectors. Statistical uncertainty is assessed using a wild bootstrap procedure based on sign-flipping of residuals. For the proxy-SVAR, the bootstrap also accounts for the presence of the external instrument over a restricted subsample. Confidence bands are constructed from the empirical distribution of bootstrap impulse responses.
+
+# 3. Results of Gertler and Karadi (2015) and replication
+
+## 3.1. Results of Gertler and Karadi (2015)
+
+Gertler and Karadi (2015) estimate a monthly VAR including log industrial production, log consumer prices, the one-year Treasury yield as the policy indicator, and the Gilchrist-Zakrajšek excess bond premium, which captures credit market tightness net of expected default risk. Monetary policy shocks are identified using high-frequency surprises in futures markets around FOMC announcements, with the three-month-ahead federal funds futures surprise (FF4) serving as the external instrument.
+
+![](data/karadi_2015_data/Figure_1_Gertler_Karadi_2015.png)
+
+The figure reports impulse responses to a one standard deviation contractionary monetary policy surprise, identified either via external instruments or via a recursive Cholesky decomposition. Under the external instrument identification, a monetary tightening leads to an immediate and statistically significant increase in the one-year Treasury yield of roughly 25 to 30 basis points. Inflation responds little on impact and declines modestly over time. Industrial production shows a delayed but pronounced contraction. It reaches a trough of roughly 0.5 percent below baseline after about two years.
+
+Following a contractionary monetary policy shock, the excess bond premium increases sharply on impact by approximately 10 basis points, and remains elevated for several months. Because the excess bond premium is constructed to remove expected default risk, this response is interpreted as evidence of a tightening in credit supply driven by financial frictions rather than changes in borrowers’ fundamentals.
+
+In contrast, when the monetary policy shock is identified using a standard Cholesky decomposition, the results differ. Inflation exhibits a statistically significant increase following a contractionary shock. This generates a price puzzle. Industrial production responds weakly, and the excess bond premium does not increase on impact and may even decline temporarily.
+
+## 3.2 Replication results with the authors' dataset
+
+![](output/AUTHORS_FIGURE1.png)
+
+This figure presents the results of my replication of Figure 1 in Gertler and Karadi (2015), using the authors’ original dataset. The VAR includes the same four variables, is estimated with twelve lags, and impulse responses are computed over a 48-month horizon. Monetary policy shocks are identified using the FF4 futures surprise as an external instrument, with the instrument sample restricted to the period 1991:01-2012:06, as in the original paper. Confidence intervals are obtained using bootstrap methods, like with the authors’ approach. The replication matches the original results, and the strength of the external instrument in the replication is coherent with the original findings.
+
+# 4. Extension results
+
+## 4.1. Replication with my reconstructed dataset
+
+![](output/REPLICATION.png)
+
+I first replicate Figure 1 using my own reconstructed dataset while keeping the original sample window and instrument choice. The extended database contains 557 monthly observations overall (1979:07-2025:12), but for this replication I restrict the VAR sample to 1979:07-2012:06 and the proxy (instrument) window to 1991:01-2012:06, as in Gertler and Karadi (2015). The external instrument is the three-month-ahead fed funds futures surprise (FF4), which is available for 258 months over 1991:01-2012:06 in my dataset. The authors' data is used only regarding the FF4 instrument. The first-stage diagnostics confirm that the instrument remains strong in this reconstructed-data replication ($F = 20.86$; robust $F = 17.55$; $R^2 = 7.53\%$; adjusted $R^2 = 7.17\%$).
+
+The impulse responses obtained with the proxy SVAR closely match the qualitative results in the original paper. Overall, using my reconstructed data does not materially alter the baseline conclusions of the original Figure 1.
+
+## 4.2. Pre-COVID extension with my reconstructed dataset
+
+![](output/EXTENSION_PRECOVID.png)
+
+I then extend the sample while excluding the COVID period to evaluate whether the baseline results are sensitive to the time window. The pre-COVID extension sets the VAR sample to 1979:07-2019:12 and the proxy window to 1991:01-2019:12. Because FF4 is unavailable after 2012 in my data construction, I replace it with ED2 (next-quarter ED futures contract) as the external instrument over the extended proxy sample (348 non-missing observations). The first-stage remains above conventional weak-instrument thresholds ($F = 25.18$; robust $F = 14.73$; $R^2 = 6.78\%$; adjusted $R^2 = 6.52\%$).
+
+The proxy-SVAR responses in the pre-COVID extension remain broadly aligned with the 2015 evidence. Relative to the baseline, magnitudes are somewhat attenuated and confidence bands widen at longer horizons, but the core qualitative message—that tightening raises borrowing costs through a credit-spread component and lowers real activity—still holds in the pre-COVID extension.
+
+## 4.3. Full extension with my reconstructed dataset
+
+![](output/EXTENSION.png)
+
+Finally, I extend the sample to include the COVID period (VAR sample 1979:07-2023:12; proxy window 1991:01-2023:12), again using ED2 as the instrument (396 non-missing observations). The first-stage is strong in this specification ($F = 46.27$; robust $F = 20.16$; $R^2 = 10.51\%$; adjusted $R^2 = 10.28\%$).
+
+Under external instruments, inflation increases rather than remaining muted or declining. Industrial production displays a positive response at short horizons before declining later, indicating a modification of the dynamic pattern relative to the original paper. The excess bond premium response is also altered: instead of rising immediately and staying positive for several months as in the baseline, it initially falls and only becomes mildly positive later.
+
+When I keep the original window and instrument (FF4), my reconstructed data reproduces the 2015 findings and preserves the authors' interpretation of a credit channel. Extending the sample without COVID still gives broadly similar conclusions, although magnitudes and precision change. In contrast, including the COVID period and relying on ED2 is associated with different responses, notably an inflation increase and a modified excess bond premium response.
+
+## 4.4. Decomposing shocks in the replication sample
+
+![](output/JK_Comparison_Replication.png)
+
+I first apply the Jarociński-Karadi (2020) decomposition methodology to the original Gertler and Karadi (2015) replication sample in order to distinguish between pure monetary policy (MP) shocks and central bank information (CBI) shocks. The baseline identification relies on sign restrictions, while the “poor man” alternative implements a bootstrap-based decomposition using high-frequency surprises.
+
+For pure MP shocks, the baseline and poor-man approaches give closely aligned impulse responses. A contractionary monetary policy shock raises the one-year rate on impact, induces a gradual decline in industrial production, and generates a positive and statistically meaningful increase in the excess bond premium. The CPI response remains muted in the short run.
+
+By contrast, the responses associated with CBI shocks differ from those of pure MP shocks. CBI shocks are characterized by a joint increase in the policy rate and real activity on impact, followed by a decline in industrial production at longer horizons. The excess bond premium responds positively but with a different timing and persistence than under pure MP shocks.
+
+Isolating pure MP shocks preserves the result of Gertler and Karadi (2015): monetary policy tightens credit conditions through a rise in the excess bond premium.
+
+## 4.5. Decomposition results in the pre-COVID extended sample
+
+![](output/JK_Comparison_PreCovid.png)
+
+I next extend the sample up to 2019, excluding the COVID period, and replace the FF4 instrument with ED2-based surprises to account for the unavailability of FF4 after 2012. In this pre-COVID extension, the qualitative responses to pure MP shocks remain similar to the replication sample. A contractionary monetary shock still leads to an increase in the excess bond premium and a delayed but sizeable contraction in industrial production, while CPI responses remain limited.
+
+However, relative to the replication sample, the magnitude of the responses is attenuated. The increase in the excess bond premium is smaller and less persistent, and the decline in industrial production is more gradual. This attenuation coincides with a lower first-stage strength of the instrument.
+
+Nonetheless, once pure MP shocks are isolated, the credit-channel mechanism emphasized by Gertler and Karadi (2015) remains present, albeit weaker.
+
+## 4.6. Decomposition results in the full post-COVID sample
+
+![](output/JK_Comparison_Extension.png)
+
+Finally, I extend the analysis to the full sample ending in 2023, which includes the COVID period and subsequent monetary tightening cycle. In this environment, the baseline and poor-man approaches diverge more visibly, particularly for real activity and inflation.
+
+Pure MP shocks continue to raise the one-year rate on impact, but their effects on industrial production and the excess bond premium are altered. While the excess bond premium still increases following a contractionary shock, the response is less persistent and more uncertain. Industrial production exhibits a short-run increase before declining.
+
+CBI shocks dominate the dynamics in the extended sample. They generate strong short-run comovement between policy rates, inflation, and output. This reminds us of central banks reacting to, or revealing, information about inflationary pressures and economic recovery.
+
+By decomposing shocks into “pure” monetary policy and central bank information components following the methodology of Jarociński and Karadi (2020), it would seem that part of what is labeled as a monetary policy shock reflects information revealed by the central bank about the economic outlook.
+
+# References

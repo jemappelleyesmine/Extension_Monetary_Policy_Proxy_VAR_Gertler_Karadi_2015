@@ -1,29 +1,5 @@
 % =========================================================================
 % JK (2020) DECOMPOSITION ON EXTENDED DATA
-% Adaptation of Jarociński-Karadi (2020) "Poor Man's Sign Restrictions"
-% to work with GK (2015) extended datasets
-% =========================================================================
-% 
-% This script adapts the JK (2020) methodology to our extended datasets:
-%   - VAR_data_extended.csv
-%   - Factors_data_extended.csv
-%
-% KEY DIFFERENCES FROM ORIGINAL JK CODE:
-%   1. Data source: Our CSVs instead of JK's data.csv
-%   2. Variables: GS1, CPI, IP, EBP (GK 2015 style) instead of GDP/deflator
-%   3. Instruments: ED2_TC, SP500_TC (extended period) + Poor Man's proxies
-%   4. Sample: Three periods (Replication, Pre-COVID, Extension)
-%
-% METHODOLOGY:
-%   - Baseline: Sign restrictions on (ED2, SP500) → MP & CBI shocks
-%   - Poor Man's: Cholesky on (PMNEG, PMPOS) proxies → MP & CBI shocks
-%
-% NORMALIZATION:
-%   All shocks are normalized to have unit variance (1 SD shock).
-%   This follows JK (2020) and allows direct comparison across methodologies.
-%   The IRFs show the response to a 1 SD innovation in each shock.
-%
-% OUTPUT: IRF figures comparing MP vs CBI across sample periods
 % =========================================================================
 
 clear all; close all;
@@ -45,7 +21,7 @@ samples = {
     'Extension',   [1988  2; 2023 12]    % Full extension with COVID
 };
 
-% Data paths (adjust to your directory structure)
+% Data paths
 path_var = 'data/output_data/VAR_data_extended.csv';
 path_fac = 'data/output_data/Factors_data_extended.csv';
 

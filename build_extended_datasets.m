@@ -1,19 +1,10 @@
-%% build_extended_datasets.m  (RAW-ONLY VERSION)
-% =========================================================================
-% Build Extended VAR and Factor Datasets for Gertler & Karadi (2015)
-% RAW-ONLY construction (NO freezing authors VAR/FAC, NO rebasing).
-%
-% Only exception: ff4_tc is taken from authors' factor_data.csv.
-%
-% Outputs (saved to data/output_data/):
-%   1) VAR_data_extended.csv
-%   2) Factors_data_extended.csv
+%% build_extended_datasets.m 
 % =========================================================================
 
 clear; clc; close all;
 
 fprintf('========================================================================\n');
-fprintf('BUILDING EXTENDED DATASETS (RAW-ONLY, NO REBASING, NO FREEZING)\n');
+fprintf('BUILDING EXTENDED DATASETS\n');
 fprintf('========================================================================\n\n');
 
 %% ========================================================================
@@ -83,7 +74,7 @@ GSW_m     = gsw_to_monthly_mean(GSW_daily);   % date is first-of-month
 GSW_m.cm5f5 = (10*GSW_m.cm10yr - 5*GSW_m.cm5yr)/5;
 
 %% ========================================================================
-%  3) LOAD EBP (GZ + OPTIONAL EXTENSION), NO REBASING
+%  3) LOAD EBP (GZ + OPTIONAL EXTENSION)
 % =========================================================================
 fprintf('3) Loading EBP...\n');
 
@@ -136,7 +127,7 @@ FF = read_fred_monthly(files.ff);
 FF.ff = FF.value;
 FF = FF(:,{'date','ff'});
 
-% Mortgage weekly -> monthly mean
+% Mortgage weekly to monthly mean
 M = readtable(files.mort);
 M.date = datetime(M.observation_date, 'InputFormat','yyyy-MM-dd');
 M.mort30 = to_num(M.MORTGAGE30US);
@@ -146,7 +137,7 @@ M = groupsummary(M,'mdate','mean','mort30');
 M.Properties.VariableNames{'mdate'} = 'date';
 M.Properties.VariableNames{'mean_mort30'} = 'mort30';
 
-% CP daily -> monthly mean
+% CP daily to monthly mean
 CP = readtable(files.cp);
 CP.date = datetime(CP.observation_date, 'InputFormat','yyyy-MM-dd');
 CP.cp90 = to_num(CP.RIFSPPFAAD90NB);
@@ -167,7 +158,7 @@ TB3.Properties.VariableNames{'mdate'} = 'date';
 TB3.Properties.VariableNames{'mean_tb3'} = 'tb3';
 
 %% ========================================================================
-%  5) MERGE VAR DATASET (RAW-ONLY)
+%  5) MERGE VAR DATASET
 % =========================================================================
 fprintf('5) Merging VAR dataset...\n');
 
@@ -226,7 +217,7 @@ FOMC = readtable(files.mps_xlsx, ...
     'Sheet','FOMC (update 2023)', ...
     'VariableNamingRule','preserve');
 
-% ---- Robust detection of date and ED/SP500 columns (no header rewriting) ----
+% ---- Robust detection of date and ED/SP500 columns ----
 v = FOMC.Properties.VariableNames;
 
 idxDate = find(contains(lower(v),'date'), 1);
